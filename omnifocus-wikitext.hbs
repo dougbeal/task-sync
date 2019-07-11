@@ -1,0 +1,31 @@
+{{#*inline 'tag'}}
+==== {{name}}  <!-- id:"{{id}}" tag:"{{name}}"  --> ====
+{{> tasks  items=tasks}}
+{{> children items=children depth='====' }}
+{{/inline}}
+
+
+
+{{#*inline 'children'}}
+{{#each items}}
+{{> tag this }}
+{{/each}}
+{{/inline}}
+
+
+{{#*inline 'tasks'}}
+{{#each items}}
+{{> task this }}
+{{/each}}
+{{/inline}}
+
+{{#*inline 'task'}}
+* [{{status}}] {{name}} <!-- id:"{{id}}" task:"{{name}}"  -->
+{{/inline}}
+
+<!-- TODO: support arbitrary depths of tags? (or at least 1 more) -->
+== active <!-- id:"{{id}}" tag:"{{name}}"  --> ==
+{{> tasks  items=tasks}}
+{{> children items=children depth='===' }}
+
+
